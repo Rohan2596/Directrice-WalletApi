@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDateTime;
+
 @ControllerAdvice
 public class GlobalWalletException {
 
     @ExceptionHandler(WalletException.class)
     public ResponseEntity<Response> handleWalletException(WalletException walletException){
         return new ResponseEntity<>(
-                new Response(walletException.exceptionTypes.errorMessage,walletException.exceptionTypes),
+                new Response(walletException.exceptionTypes.errorMessage,walletException.exceptionTypes, LocalDateTime.now()),
                 HttpStatus.BAD_GATEWAY);
     }
 

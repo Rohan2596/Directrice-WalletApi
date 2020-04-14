@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/directrice/transaction")
 public class TransactionController {
@@ -21,7 +23,7 @@ public class TransactionController {
     @GetMapping("/user")
     public ResponseEntity<Response> getAllWalletById(@RequestHeader String token,
                                                      @RequestParam String walletId){
-        return new ResponseEntity(new Response("All Wallet",transactionServiceImp.getUserWalletTransactions(walletId)),HttpStatus.OK);
+        return new ResponseEntity(new Response("All Wallet",transactionServiceImp.getUserWalletTransactions(walletId), LocalDateTime.now()),HttpStatus.OK);
     }
 
 
